@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Перегляд YouTube-відео</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header>
+    <img src="./photo/Logo.jpg">
+    <ul class="header-list">
+      <li><a href="index.html">Головна</a></li>
+      <li><a class="title-sub-list">Категорії</a>
+        <ul>
+            <li><a href="index2.html">Рецепти на кожен день</a></li>
+            <li><a href="vegan.html">Вегетаріанська кухня</a></li>
+            <li><a href="zdorove.html">Здорове харчування</a></li>
+            <li><a href="pe4ivo.html">Печиво та випічка</a></li>
+        </ul>
+    </li>
+      <li><a href="https://archiveofrecipes.com" target="_blank">Архів</a></li>
+      <li><a href="map.html">Контакти</a></li>
+      <li><a href="video.html">Відео</a></li>
+      <li class="search"><input><img src="./photo/search.png"></li>
+    </ul>
+  </header>
+
+  <h1>Відео №1</h1>
+  <div class="video-container">
+    <div id="player1"></div>
+  </div>
+  <h1>Відео №2</h1>
+  <div class="video-container">
+
+    <div id="player2"></div>
+  </div>
+  <h1>Відео №3</h1>
+  <div class="video-container">
+
+    <div id="player3"></div>
+  </div>
+  <h1>Відео №4</h1>
+  <div class="video-container">
+
+    <div id="player4"></div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var players = [];
+
+    function onYouTubeIframeAPIReady() {
+      createPlayer('player1', 'wIJPbB_v73o');
+      createPlayer('player2', 'js89monY9mg');
+      createPlayer('player3', 'PYQj1vRSKh0');
+      createPlayer('player4', 'iSPR4mDW7Ic');
+      
+    }
+
+    function createPlayer(playerId, videoId) {
+      players[playerId] = new YT.Player(playerId, {
+        height: '360',
+        width: '640',
+        videoId: videoId,
+      });
+    }
+  </script>
+</body>
+
+</html>

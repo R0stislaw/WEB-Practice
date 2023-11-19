@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>Місце розташування компанії</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <img src="./photo/Logo.jpg" alt="Logo">
+        <ul class="header-list">
+            <li><a href="index.html">Головна</a></li>
+            <li><a class="title-sub-list">Категорії</a>
+                <ul>
+                    <li><a href="index2.html">Рецепти на кожен день</a></li>
+                    <li><a href="vegan.html">Вегетаріанська кухня</a></li>
+                    <li><a href="zdorove.html">Здорове харчування</a></li>
+                    <li><a href="pe4ivo.html">Печиво та випічка</a></li>
+                </ul>
+            </li>
+            <li><a href="https://archiveofrecipes.com" target="_blank">Архів</a></li>
+            <li><a href="map.html">Контакти</a></li>
+            <li><a href="video.html">Відео</a></li>
+            <li class="search"><input><img src="./photo/search.png" alt="Search"></li>
+        </ul>
+    </header>
+    <div class="blank">
+        <div class="title-data">Для співпраці - заповніть дані!!</div>
+        <div class="input-data">
+            <input type="text" id="pib" name="pib" placeholder="ПІБ">
+            <input type="email" id="email" name="email" placeholder="G-mail">
+            <input type="tel" id="phone" name="phone" placeholder="Номер тел.">
+            <button type="submit" onclick="submitForm()">Accept</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+            var pibInput = document.getElementById("pib");
+            var emailInput = document.getElementById("email");
+            var phoneInput = document.getElementById("phone");
+            var gmailRegex = /^[a-zA-Z0-9_.+-]+@gmail\.com$/;
+            if (pibInput.value && emailInput.value && phoneInput.value) {
+                if (gmailRegex.test(emailInput.value)) {
+                    var message = "Ми отримали ваші дані:\n\n";
+                    message += "ПІБ: " + pibInput.value + "\n";
+                    message += "Email: " + emailInput.value + "\n";
+                    message += "Номер тел.: " + phoneInput.value;
+                    alert(message);
+                    clearInputs();
+                } else {
+                    alert("Будь ласка, введіть дійсну електронну адресу Gmail!");
+                }
+            } else {
+                alert("Будь ласка, заповніть усі поля!");
+            }
+        }
+        function clearInputs() {
+            document.getElementById("pib").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
+        }
+    </script>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        function initMap() {
+            var map = L.map('map').setView([49.43371081258067, 26.985599342093735], 17);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 18
+            }).addTo(map);
+            L.marker([49.43371081258067, 26.985599342093735]).addTo(map);
+        }
+        initMap();
+    </script>
+</body>
+</html>
